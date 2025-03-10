@@ -32,7 +32,7 @@ export default async function Page({params}) {
             <EditButton id={movie.id}/>
             <DeleteButton id={movie.id}/>
             {(moviePost) ?
-            <CommentForm key={moviePost.id} id={movie.id} content={moviePost.post_content} />: <p></p>
+            <CommentForm key={moviePost.id} id={movie.id} content={moviePost.post_content} />: <CommentForm id={movie.id} />
             }
         </div>
     )
