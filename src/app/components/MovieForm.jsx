@@ -15,7 +15,7 @@ export default function NewMovieForm() {
         const mainLead = movieData.get("main_lead");
         const posterURL = movieData.get("img_url")
 
-        await db.query(`INSERT INTO movies_full (title, age_rating, release_date, film_rating, description, main_lead, img_url) VALUES ($1, $2, $3, $4, $5, $6, $7)`, [
+        var id = await db.query(`INSERT INTO movies_full (title, age_rating, release_date, film_rating, description, main_lead, img_url) VALUES ($1, $2, $3, $4, $5, $6, $7)`, [
             title,
             ageRating,
             releaseDate,
@@ -24,6 +24,11 @@ export default function NewMovieForm() {
             mainLead,
             posterURL
         ])
+
+        var res = await db.query(`SELECT * FROM movies_full`)
+
+
+        await db.query(`INSERT INTO movie_comments (movies_full_post_f_key, post_content) VALUES ($1, $2)`, [res.length, ''])
         console.log(db.query);
 
         revalidatePath("/movies");

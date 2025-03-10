@@ -31,7 +31,9 @@ export default async function Page({params}) {
             </ul>
             <EditButton id={movie.id}/>
             <DeleteButton id={movie.id}/>
-            <CommentForm key={moviePost.id} id={movie.id} content={moviePost.post_content} />
+            {(moviePost) ?
+            <CommentForm key={moviePost.id} id={movie.id} content={moviePost.post_content} />: <p></p>
+            }
         </div>
     )
 }
